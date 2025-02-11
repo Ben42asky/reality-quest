@@ -1,12 +1,32 @@
+
 export type Evidence = {
+
+  description: string;
+
+  scenarios: {
+    options: never[];
+    thought: string;
     description: string;
-    scenarios: {
-      description: string;
-      thought: string;
-      options: {
-        text: string;
-        correct: boolean;
-      }[];
+
+    text: string;
+
+    correct: string;
+
+  }[];
+
+  relapseTrigger: {
+
+    description: string;
+
+    options: {
+      [x: string]: string | boolean;
+
+      text: string;
+
+      correct: boolean;
+
     }[];
-    relapseTrigger: string;
+
   };
+
+};

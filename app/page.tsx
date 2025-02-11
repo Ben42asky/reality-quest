@@ -13,19 +13,6 @@ import { AlertCircle } from "lucide-react"
 import type React from "react"
 import { type Evidence } from '@/app/types';
 
-type Evidence = {
-  description: string;
-  scenarios: {
-    description: string;
-    thought: string;
-    options: {
-      text: string;
-      correct: boolean; // Changed from 'isCorrect' to 'correct'
-    }[];
-  }[];
-  relapseTrigger: string;
-};
-
 type GameState = "intro" | "instructions" | "playing" | "gameOver" | "victory"
 
 export default function RealityQuest() {
