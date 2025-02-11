@@ -11,15 +11,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/app/ui/alert"
 import { AlertCircle } from "lucide-react"
 import type React from "react"
+import { type Evidence } from '@/app/types';
 
 type Evidence = {
-  description: string
+  description: string;
   scenarios: {
-    text: string
-    isCorrect: boolean
-  }[]
-  relapseTrigger: string
-}
+    description: string;
+    thought: string;
+    options: {
+      text: string;
+      correct: boolean; // Changed from 'isCorrect' to 'correct'
+    }[];
+  }[];
+  relapseTrigger: string;
+};
 
 type GameState = "intro" | "instructions" | "playing" | "gameOver" | "victory"
 
