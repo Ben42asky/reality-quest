@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/app/ui/button"
 import { Card } from "@/app/ui/card"
-import { Evidence } from "../types"
-
+import { Evidence } from '@/app/types'
 type Scenario = {
   description: string
   thought: string
@@ -14,12 +13,12 @@ type Scenario = {
   }>
 }
 type StoryRewriterProps = {
-  scenarios: Evidence['scenarios'];
-  evidenceDescription: string;
-  onStoryRewritten: () => void;
-  onStoryFailed: () => void;
-  onComplete: () => void;
-};
+  scenarios: Evidence['scenarios']
+  evidenceDescription: string
+  onStoryRewritten: () => void
+  onStoryFailed: () => void
+  onComplete: () => void
+}
 
 export function StoryRewriter({
   onStoryRewritten,
