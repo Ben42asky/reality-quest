@@ -10,7 +10,7 @@ import { Progress } from "@/app/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/app/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { Evidence, Trigger } from "@/app/components/types"
+import { Evidence } from "@/app/components/types"
 
 type GameState = "intro" | "instructions" | "playing" | "gameOver" | "victory"
 
