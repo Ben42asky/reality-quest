@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/app/ui/alert"
 import { AlertCircle } from "lucide-react"
 import type React from "react"
-import { Evidence } from '@/app/types'
+import type { Evidence } from "./evidence"
 
 type GameState = "intro" | "instructions" | "playing" | "gameOver" | "victory"
 

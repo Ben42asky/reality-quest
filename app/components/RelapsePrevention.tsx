@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Button } from "@/app/ui/button"
-import { Progress } from "@/app/ui/progress"
-import { Card } from "@/app/ui/card"
+import { Button } from "../ui/button"
+import { Progress } from "../ui/progress"
+import { Card } from "../ui/card"
 
 type Trigger = {
   description: string
