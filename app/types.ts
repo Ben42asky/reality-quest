@@ -16,6 +16,7 @@ export type Evidence = {
     options: Array<{
       text: string;
       correct: boolean;
+      explanation: string; // Add the explanation property
     }>;
   };
 };
