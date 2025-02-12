@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "../ui/button"
 import { Card } from "../ui/card"
-import { Evidence } from "@/types"
+import { Evidence } from "@/app/components/types"
 
 type Scenario = {
   description: string

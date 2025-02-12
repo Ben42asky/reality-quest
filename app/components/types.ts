@@ -9,6 +9,7 @@ export type Evidence = {
     options: Array<{
       text: string
       correct: boolean
+      explanation: string
     }>
   }>
   relapseTrigger: {
@@ -16,7 +17,7 @@ export type Evidence = {
     options: Array<{
       text: string
       correct: boolean
+      explanation: string
     }>
   }
 }
-
