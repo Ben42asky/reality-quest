@@ -6,7 +6,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/app/ui/dialo
 import { motion } from "framer-motion"
 import { Button } from "@/app/ui/button"
 
-
 type Evidence = {
   id: number
   type: string

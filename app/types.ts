@@ -1,32 +1,21 @@
-
 export type Evidence = {
-
+  id: number;
+  type: string;
+  emoji: string;
   description: string;
-
-  scenarios: {
-    options: never[];
+  scenarios: Array<{
+    description: string;
     thought: string;
-    description: string;
-
-    text: string;
-
-    correct: string;
-
-  }[];
-
-  relapseTrigger: {
-
-    description: string;
-
-    options: {
-      [x: string]: string | boolean;
-
+    options: Array<{
       text: string;
-
       correct: boolean;
-
-    }[];
-
+    }>;
+  }>;
+  relapseTrigger: {
+    description: string;
+    options: Array<{
+      text: string;
+      correct: boolean;
+    }>;
   };
-
 };
