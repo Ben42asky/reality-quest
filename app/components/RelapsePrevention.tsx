@@ -72,17 +72,16 @@ export function RelapsePrevention({
   }, [feedback, onComplete])
 
   const handleOptionSelect = (optionIndex: number) => {
-    if (selectedOptions.includes(optionIndex)) {
-      setSelectedOptions(selectedOptions.filter((i) => i !== optionIndex))
-    } else if (selectedOptions.length < 2) {
-      setSelectedOptions([...selectedOptions, optionIndex])
-    } else {
+    if (selectedOptions.includes(optionIndex) || selectedOptions.length >= 2) {
       return
     }
 
-    if (selectedOptions.length === 2) {
+    const newSelectedOptions = [...selectedOptions, optionIndex]
+    setSelectedOptions(newSelectedOptions)
+
+    if (newSelectedOptions.length === 2) {
       setGameActive(false)
-      const selectedResponses = selectedOptions.map((i) => trigger.options[i])
+      const selectedResponses = newSelectedOptions.map((i) => trigger.options[i])
       const correctCount = selectedResponses.filter((r) => r.correct).length
 
       const newFeedback = selectedResponses.map(
