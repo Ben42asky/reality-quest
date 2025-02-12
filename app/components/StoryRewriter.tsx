@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/app/ui/button"
-import { Card } from "@/app/ui/card"
-import { type Evidence } from "@/app/evidence";
+import { Button } from "../ui/button"
+import { Card } from "../ui/card"
+import { Evidence } from "@/types"
 
 type Scenario = {
   description: string

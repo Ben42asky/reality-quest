@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card } from "@/app/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/app/ui/dialog"
+import { Card } from "../ui/card"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog"
 import { motion } from "framer-motion"
-import { Button } from "@/app/ui/button"
+import { Button } from "../ui/button"
 
 type Evidence = {
   id: number
