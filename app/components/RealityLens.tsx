@@ -24,6 +24,7 @@ type Evidence = {
     options: Array<{
       text: string
       correct: boolean
+      explanation: string // Remove the optional modifier
     }>
   }
 }
@@ -59,10 +60,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "Later, you get a call about a car accident in the parking lot",
       options: [
-        { text: "Check the facts before assuming it's your car", correct: true },
-        { text: "Rush to the parking lot immediately", correct: false },
-        { text: "Remember your car is safely parked", correct: true },
-        { text: "Cancel all plans for the day", correct: false },
+        { text: "Check the facts before assuming it's your car", correct: true, explanation: "It's important to verify information before reacting." },
+        { text: "Rush to the parking lot immediately", correct: false, explanation: "Reacting impulsively can increase anxiety." },
+        { text: "Remember your car is safely parked", correct: true, explanation: "Trust in your previous actions and decisions." },
+        { text: "Cancel all plans for the day", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -96,10 +97,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You hear a loud thump outside",
       options: [
-        { text: "Check calmly what happened", correct: true },
-        { text: "Assume the worst immediately", correct: false },
-        { text: "Remember most sounds are harmless", correct: true },
-        { text: "Call emergency services", correct: false },
+        { text: "Check calmly what happened", correct: true, explanation: "Staying calm helps you assess the situation accurately." },
+        { text: "Assume the worst immediately", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Remember most sounds are harmless", correct: true, explanation: "Most noises are not indicative of danger." },
+        { text: "Call emergency services", correct: false, explanation: "Overreacting can cause unnecessary panic." },
       ],
     },
   },
@@ -133,10 +134,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You see a news report about a break-in nearby",
       options: [
-        { text: "My door is securely locked", correct: true },
-        { text: "I need to check the lock again", correct: false },
-        { text: "Trust in my security measures", correct: true },
-        { text: "Stay up all night watching", correct: false },
+        { text: "My door is securely locked", correct: true, explanation: "Trust in your security measures." },
+        { text: "I need to check the lock again", correct: false, explanation: "Repeated checking can increase anxiety." },
+        { text: "Trust in my security measures", correct: true, explanation: "Confidence in your actions is important." },
+        { text: "Stay up all night watching", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -170,10 +171,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You read an article about food recalls in your area",
       options: [
-        { text: "Check if the recall affects products you've bought", correct: true },
-        { text: "Throw away all your food immediately", correct: false },
-        { text: "Trust that most food is safe to eat", correct: true },
-        { text: "Stop eating anything not prepared by you", correct: false },
+        { text: "Check if the recall affects products you've bought", correct: true, explanation: "Verify information before reacting." },
+        { text: "Throw away all your food immediately", correct: false, explanation: "Overreacting can cause unnecessary waste." },
+        { text: "Trust that most food is safe to eat", correct: true, explanation: "Confidence in food safety standards is important." },
+        { text: "Stop eating anything not prepared by you", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -207,10 +208,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You feel a slight stomach discomfort after eating",
       options: [
-        { text: "Minor discomfort is common and usually harmless", correct: true },
-        { text: "I must have severe food poisoning", correct: false },
-        { text: "Wait and see if it passes naturally", correct: true },
-        { text: "I should go on a water-only diet", correct: false },
+        { text: "Minor discomfort is common and usually harmless", correct: true, explanation: "Most minor discomforts are not indicative of serious issues." },
+        { text: "I must have severe food poisoning", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Wait and see if it passes naturally", correct: true, explanation: "Patience can help in assessing the situation accurately." },
+        { text: "I should go on a water-only diet", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -244,10 +245,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You read about a rare yoga-related injury online",
       options: [
-        { text: "Rare incidents don't negate the overall benefits of yoga", correct: true },
-        { text: "I must have this injury too", correct: false },
-        { text: "Continue practicing yoga with proper form", correct: true },
-        { text: "Warn everyone I know about the dangers of yoga", correct: false },
+        { text: "Rare incidents don't negate the overall benefits of yoga", correct: true, explanation: "Trust in the overall benefits of yoga." },
+        { text: "I must have this injury too", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Continue practicing yoga with proper form", correct: true, explanation: "Proper form reduces the risk of injury." },
+        { text: "Warn everyone I know about the dangers of yoga", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -281,10 +282,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "Your phone shows a slightly different time than your watch",
       options: [
-        { text: "Small time differences between devices are normal", correct: true },
-        { text: "I can't trust any of my time-keeping devices", correct: false },
-        { text: "Use an online time service to verify if needed", correct: true },
-        { text: "I need to buy a new watch and phone immediately", correct: false },
+        { text: "Small time differences between devices are normal", correct: true, explanation: "Minor time differences are common and usually harmless." },
+        { text: "I can't trust any of my time-keeping devices", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Use an online time service to verify if needed", correct: true, explanation: "Online time services can help verify the correct time." },
+        { text: "I need to buy a new watch and phone immediately", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -318,10 +319,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You see your friend talking and laughing with someone else",
       options: [
-        { text: "It's healthy for friends to have other relationships too", correct: true },
-        { text: "They're obviously talking about me", correct: false },
-        { text: "Feel happy that your friend is enjoying themselves", correct: true },
-        { text: "I should confront them about excluding me", correct: false },
+        { text: "It's healthy for friends to have other relationships too", correct: true, explanation: "Trust in the strength of your friendship." },
+        { text: "They're obviously talking about me", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Feel happy that your friend is enjoying themselves", correct: true, explanation: "Happiness for others can strengthen relationships." },
+        { text: "I should confront them about excluding me", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -355,10 +356,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You read about a tree falling on a house during a storm",
       options: [
-        { text: "Such incidents are rare and proper tree maintenance prevents most issues", correct: true },
-        { text: "I need to cut down all trees near my house", correct: false },
-        { text: "Trust that most trees are safe and beneficial", correct: true },
-        { text: "I should never go outside when it's windy", correct: false },
+        { text: "Such incidents are rare and proper tree maintenance prevents most issues", correct: true, explanation: "Proper tree maintenance reduces risks." },
+        { text: "I need to cut down all trees near my house", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Trust that most trees are safe and beneficial", correct: true, explanation: "Confidence in tree safety is important." },
+        { text: "I should never go outside when it's windy", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -392,10 +393,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You read about a major computer virus outbreak",
       options: [
-        { text: "My antivirus software and regular updates protect me from most threats", correct: true },
-        { text: "I should disconnect my computer from the internet forever", correct: false },
-        { text: "Continue using my computer while following good security practices", correct: true },
-        { text: "I need to buy a new computer every time there's a virus scare", correct: false },
+        { text: "My antivirus software and regular updates protect me from most threats", correct: true, explanation: "Trust in your security measures." },
+        { text: "I should disconnect my computer from the internet forever", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Continue using my computer while following good security practices", correct: true, explanation: "Good security practices reduce risks." },
+        { text: "I need to buy a new computer every time there's a virus scare", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -429,10 +430,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You read about a rare disease with symptoms similar to a common cold",
       options: [
-        { text: "Common symptoms usually indicate common conditions", correct: true },
-        { text: "I must have this rare disease", correct: false },
-        { text: "Monitor my health but don't jump to worst-case scenarios", correct: true },
-        { text: "I should demand every possible medical test", correct: false },
+        { text: "Common symptoms usually indicate common conditions", correct: true, explanation: "Trust in the commonality of common symptoms." },
+        { text: "I must have this rare disease", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Monitor my health but don't jump to worst-case scenarios", correct: true, explanation: "Patience can help in assessing the situation accurately." },
+        { text: "I should demand every possible medical test", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
@@ -466,10 +467,10 @@ const evidencePool: Evidence[] = [
     relapseTrigger: {
       description: "You hear about someone else's event that didn't go as planned",
       options: [
-        { text: "Every event is unique, and many factors contribute to success", correct: true },
-        { text: "This is a sign that my event will also fail", correct: false },
-        { text: "Learn from others' experiences but trust in your preparations", correct: true },
-        { text: "I should warn everyone I know about the dangers of planning events", correct: false },
+        { text: "Every event is unique, and many factors contribute to success", correct: true, explanation: "Trust in your preparations." },
+        { text: "This is a sign that my event will also fail", correct: false, explanation: "Jumping to conclusions can increase anxiety." },
+        { text: "Learn from others' experiences but trust in your preparations", correct: true, explanation: "Confidence in your preparations is important." },
+        { text: "I should warn everyone I know about the dangers of planning events", correct: false, explanation: "Overreacting can disrupt your daily life unnecessarily." },
       ],
     },
   },
