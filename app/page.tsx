@@ -10,7 +10,7 @@ import { Progress } from "@/app/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/app/ui/alert"
 import { AlertCircle } from "lucide-react"
-import { Evidence } from "@/app/components/types"
+import type { Evidence } from "@/app/components/types"
 
 type GameState = "intro" | "instructions" | "playing" | "gameOver" | "victory"
 
@@ -62,23 +62,23 @@ export default function RealityQuest() {
     setRealSelfProgress((prevProgress) => Math.min(prevProgress + 10, 100))
     setAnxietyMeter((prevAnxiety) => Math.max(prevAnxiety - 5, 0))
     setScore((prevScore) => prevScore + 10)
-    
+
     setCurrentEvidence({
       ...evidence,
       scenarios: evidence.scenarios.map((scenario) => ({
         ...scenario,
         options: scenario.options.map((option) => ({
           ...option,
-          explanation: option.explanation || "No explanation provided"
-        }))
+          explanation: option.explanation || "No explanation provided",
+        })),
       })),
       relapseTrigger: {
         ...evidence.relapseTrigger,
         options: evidence.relapseTrigger.options.map((option) => ({
           ...option,
-          explanation: option.explanation || "No explanation provided"
-        }))
-      }
+          explanation: option.explanation || "No explanation provided",
+        })),
+      },
     })
     setActiveTab("rewriter")
   }
@@ -118,15 +118,15 @@ export default function RealityQuest() {
 
   if (gameState === "intro") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0d3c26] text-white">
+      <div className="min-h-screen flex items-center justify-center bg-white text-black">
         <div className="text-center space-y-6">
           <h1 className="text-4xl font-bold mb-4">Reality Quest: Build Your Real Self</h1>
-          <p className="mb-4 text-[#daf2ce]">Overcome OCD and discover your true self!</p>
+          <p className="mb-4">Overcome OCD and discover your true self!</p>
           <div className="space-x-4">
-            <Button onClick={showInstructions} className="bg-[#daf2ce] text-[#0d3c26] hover:bg-[#c5e4b5]">
+            <Button onClick={showInstructions} className="bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90">
               How to Play
             </Button>
-            <Button onClick={startGame} className="bg-[#daf2ce] text-[#0d3c26] hover:bg-[#c5e4b5]">
+            <Button onClick={startGame} className="bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90">
               Start Game
             </Button>
           </div>
@@ -137,11 +137,11 @@ export default function RealityQuest() {
 
   if (gameState === "instructions") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0d3c26] text-white p-8">
+      <div className="min-h-screen flex items-center justify-center bg-white text-black p-8">
         <div className="max-w-2xl space-y-6">
           <h1 className="text-3xl font-bold mb-6">How to Play</h1>
 
-          <div className="space-y-4 text-[#daf2ce]">
+          <div className="space-y-4">
             <section>
               <h2 className="text-xl font-semibold mb-2">1. Reality Lens 🔍</h2>
               <p>Click on cards to reveal reality checks. Each card contains evidence that challenges OCD thoughts.</p>
@@ -170,7 +170,7 @@ export default function RealityQuest() {
             </section>
           </div>
 
-          <Button onClick={startGame} className="mt-6 bg-[#daf2ce] text-[#0d3c26] hover:bg-[#c5e4b5]">
+          <Button onClick={startGame} className="mt-6 bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90">
             Start Game
           </Button>
         </div>
@@ -180,12 +180,12 @@ export default function RealityQuest() {
 
   if (gameState === "gameOver") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0d3c26] text-white">
+      <div className="min-h-screen flex items-center justify-center bg-white text-black">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Game Over</h1>
           <p className="mb-4">Your anxiety reached 100%</p>
           <p className="mb-4">Final Score: {score}</p>
-          <Button onClick={startGame} className="bg-[#daf2ce] text-[#0d3c26] hover:bg-[#c5e4b5]">
+          <Button onClick={startGame} className="bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90">
             Try Again
           </Button>
         </div>
@@ -195,12 +195,12 @@ export default function RealityQuest() {
 
   if (gameState === "victory") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0d3c26] text-white">
+      <div className="min-h-screen flex items-center justify-center bg-white text-black">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Congratulations!</h1>
           <p className="mb-4">You've built your Real Self to 100%!</p>
           <p className="mb-4">Final Score: {score}</p>
-          <Button onClick={startGame} className="bg-[#daf2ce] text-[#0d3c26] hover:bg-[#c5e4b5]">
+          <Button onClick={startGame} className="bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90">
             Play Again
           </Button>
         </div>
@@ -211,11 +211,11 @@ export default function RealityQuest() {
   return (
     <div className="min-h-screen bg-[#0d3c26] p-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4">
-        <h1 className="text-3xl font-bold text-center mb-6 text-[#0d3c26]">Reality Quest: Build Your Real Self</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-[#0d3c26]">Reality Quest: Build Your Real Self</h1>
 
-        <div className="mb-4 space-y-4">
+        <div className="mb-4 space-y-3 sm:space-y-4">
           <div className="flex justify-end items-center">
-            <span className="text-xl font-bold text-[#0d3c26]">Score: {score}</span>
+            <span className="text-lg sm:text-xl font-bold text-black">Score: {score}</span>
           </div>
 
           <div className="space-y-1">
@@ -225,23 +225,23 @@ export default function RealityQuest() {
             </div>
             <Progress
               value={anxietyMeter}
-              className="h-2 bg-gray-200"
+              className="h-2 bg-[#daf2ce]"
               style={
                 {
-                  "--progress-background": "rgb(239, 68, 68)",
+                  "--progress-background": "#0d3c26",
                 } as React.CSSProperties
               }
             />
           </div>
 
           <div className="space-y-1">
-            <div className="flex justify-between items-center">
-              <span className="text-[#0d3c26]">Real Self Progress:</span>
-              <span className="text-[#0d3c26]">{realSelfProgress}%</span>
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-sm sm:text-base text-black">Real Self Progress:</span>
+              <span className="text-sm sm:text-base text-black">{realSelfProgress}%</span>
             </div>
             <Progress
               value={realSelfProgress}
-              className="h-2 bg-gray-200"
+              className="h-2 bg-[#daf2ce]"
               style={
                 {
                   "--progress-background": "#0d3c26",
@@ -259,29 +259,29 @@ export default function RealityQuest() {
           </Alert>
         )}
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="w-full">
+<Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+          <TabsList className="w-full flex flex-wrap gap-1 h-auto bg-[#daf2ce] p-1">
             <TabsTrigger
               value="lens"
-              className="flex-1 data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
+              className="flex-1 min-w-[120px] data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
             >
               Reality Lens
             </TabsTrigger>
             <TabsTrigger
               value="rewriter"
-              className="flex-1 data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
+              className="flex-1 min-w-[120px] data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
             >
               Story Rewriter
             </TabsTrigger>
             <TabsTrigger
               value="prevention"
-              className="flex-1 data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
+              className="flex-1 min-w-[120px] data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
             >
               Relapse Prevention
             </TabsTrigger>
             <TabsTrigger
               value="journal"
-              className="flex-1 data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
+              className="flex-1 min-w-[120px] data-[state=active]:bg-[#0d3c26] data-[state=active]:text-white"
             >
               Real Self Journal
             </TabsTrigger>
@@ -321,3 +321,4 @@ export default function RealityQuest() {
     </div>
   )
 }
+

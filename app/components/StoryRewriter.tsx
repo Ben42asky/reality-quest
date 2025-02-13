@@ -1,25 +1,24 @@
 "use client"
-
-import { useState, useEffect } from "react"
 import { Button } from "../ui/button"
 import { Card } from "../ui/card"
-import { Evidence } from "@/app/components/types"
+import React, { useEffect } from "react"
 
-type Scenario = {
+interface Scenario {
   description: string
   thought: string
-  options: Array<{
+  options: {
     text: string
     correct: boolean
-  }>
+  }[]
 }
-type StoryRewriterProps = {
-  scenarios: Evidence["scenarios"];
-  evidenceDescription: string;
-  onStoryRewritten: () => void;
-  onStoryFailed: () => void;
-  onComplete: () => void;
-};
+
+interface StoryRewriterProps {
+  onStoryRewritten: () => void
+  onStoryFailed: () => void
+  onComplete: () => void
+  scenarios: Scenario[]
+  evidenceDescription: string
+}
 
 export function StoryRewriter({
   onStoryRewritten,
@@ -27,26 +26,10 @@ export function StoryRewriter({
   onComplete,
   scenarios,
   evidenceDescription,
-}: {
-  onStoryRewritten: () => void
-  onStoryFailed: () => void
-  onComplete: () => void
-  scenarios: Scenario[]
-  evidenceDescription: string
-}) {
-  const [currentScenarioIndex, setCurrentScenarioIndex] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
-  const [showFeedback, setShowFeedback] = useState(false)
-
-  const startNewScenario = () => {
-    if (currentScenarioIndex < scenarios.length - 1) {
-      setCurrentScenarioIndex((prevIndex) => prevIndex + 1)
-      setSelectedOption(null)
-      setShowFeedback(false)
-    } else {
-      onComplete()
-    }
-  }
+}: StoryRewriterProps) {
+  const [currentScenarioIndex, setCurrentScenarioIndex] = React.useState(0)
+  const [selectedOption, setSelectedOption] = React.useState<number | null>(null)
+  const [showFeedback, setShowFeedback] = React.useState(false)
 
   const handleOptionSelect = (optionIndex: number) => {
     setSelectedOption(optionIndex)
@@ -59,6 +42,12 @@ export function StoryRewriter({
     }
   }
 
+  const startNewScenario = () => {
+    setCurrentScenarioIndex(currentScenarioIndex + 1)
+    setSelectedOption(null)
+    setShowFeedback(false)
+  }
+
   useEffect(() => {
     if (currentScenarioIndex === scenarios.length - 1 && showFeedback) {
       onComplete()
@@ -68,33 +57,33 @@ export function StoryRewriter({
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Story Rewriter</h2>
+        <h2 className="text-2xl font-bold text-black">Story Rewriter</h2>
         {currentScenarioIndex < scenarios.length - 1 && (
-          <Button onClick={startNewScenario} className="w-40" disabled={!showFeedback}>
+          <Button onClick={startNewScenario} className="w-40 bg-[#0d3c26] text-white" disabled={!showFeedback}>
             Next Scenario
           </Button>
         )}
       </div>
 
       <Card className="p-4 space-y-4 bg-[#daf2ce]">
-        <h3 className="font-semibold">Reality Check:</h3>
-        <p>{evidenceDescription}</p>
+        <h3 className="font-semibold text-black">Reality Check:</h3>
+        <p className="text-black">{evidenceDescription}</p>
       </Card>
 
       {scenarios[currentScenarioIndex] && (
-        <Card className="p-4 space-y-4">
+        <Card className="p-4 space-y-4 bg-white">
           <div className="space-y-2">
-            <h3 className="font-semibold">Scenario:</h3>
-            <p>{scenarios[currentScenarioIndex].description}</p>
+            <h3 className="font-semibold text-black">Scenario:</h3>
+            <p className="text-black">{scenarios[currentScenarioIndex].description}</p>
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-semibold">Intrusive Thought:</h3>
+            <h3 className="font-semibold text-black">Intrusive Thought:</h3>
             <p className="text-red-600">{scenarios[currentScenarioIndex].thought}</p>
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-semibold">Choose the best reframe:</h3>
+            <h3 className="font-semibold text-black">Choose the best reframe:</h3>
             <div className="grid grid-cols-1 gap-2">
               {scenarios[currentScenarioIndex].options.map((option, index) => (
                 <Button
@@ -104,11 +93,13 @@ export function StoryRewriter({
                   className={`h-auto py-3 px-4 text-left justify-start ${
                     showFeedback
                       ? option.correct
-                        ? "bg-green-100 hover:bg-green-200"
+                        ? "bg-[#daf2ce] hover:bg-[#daf2ce]/90 text-black"
                         : selectedOption === index
-                          ? "bg-red-100 hover:bg-red-200"
+                          ? "bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90"
                           : ""
-                      : ""
+                      : selectedOption === index
+                        ? "bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90"
+                        : ""
                   }`}
                   disabled={showFeedback}
                 >
@@ -121,10 +112,14 @@ export function StoryRewriter({
           {showFeedback && (
             <div
               className={`p-4 rounded-lg ${
-                scenarios[currentScenarioIndex].options[selectedOption!].correct ? "bg-green-100" : "bg-red-100"
+                scenarios[currentScenarioIndex].options[selectedOption!].correct ? "bg-[#daf2ce]" : "bg-[#ff4d4d]"
               }`}
             >
-              <p className="font-semibold">
+              <p
+                className={`font-semibold ${
+                  scenarios[currentScenarioIndex].options[selectedOption!].correct ? "text-black" : "text-white"
+                }`}
+              >
                 {scenarios[currentScenarioIndex].options[selectedOption!].correct
                   ? "Great job! This is a helpful way to reframe the thought."
                   : "This might not be the most helpful way to think about it. Try another scenario!"}
