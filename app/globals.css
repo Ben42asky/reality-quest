@@ -33,6 +33,12 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --button: #0d3c26;
+    --bar: #0d3c26;
+    --selected-option: #0d3c26;
+    --modal: #daf2ce;
+    --popup-message: #daf2ce;
+    --highlight: #daf2ce;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -59,6 +65,12 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --button: #0d3c26;
+    --bar: #0d3c26;
+    --selected-option: #0d3c26;
+    --modal: #daf2ce;
+    --popup-message: #daf2ce;
+    --highlight: #daf2ce;
   }
 }
 
