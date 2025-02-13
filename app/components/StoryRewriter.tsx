@@ -95,10 +95,10 @@ export function StoryRewriter({
                       ? option.correct
                         ? "bg-[#daf2ce] hover:bg-[#daf2ce]/90 text-black"
                         : selectedOption === index
-                          ? "bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90"
+                          ? "bg-[#0d3c26] text-black hover:bg-[#0d3c26]"
                           : ""
                       : selectedOption === index
-                        ? "bg-[#0d3c26] text-white hover:bg-[#0d3c26]/90"
+                        ? "bg-[#0d3c26] text-black hover:bg-[#0d3c26]"
                         : ""
                   }`}
                   disabled={showFeedback}
@@ -112,12 +112,12 @@ export function StoryRewriter({
           {showFeedback && (
             <div
               className={`p-4 rounded-lg ${
-                scenarios[currentScenarioIndex].options[selectedOption!].correct ? "bg-[#daf2ce]" : "bg-[#ff4d4d]"
+                scenarios[currentScenarioIndex].options[selectedOption!].correct ? "bg-[#daf2ce]" : "bg-[#daf2ce]"
               }`}
             >
               <p
                 className={`font-semibold ${
-                  scenarios[currentScenarioIndex].options[selectedOption!].correct ? "text-black" : "text-white"
+                  scenarios[currentScenarioIndex].options[selectedOption!].correct ? "text-black" : "text-black"
                 }`}
               >
                 {scenarios[currentScenarioIndex].options[selectedOption!].correct

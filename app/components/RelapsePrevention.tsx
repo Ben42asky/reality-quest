@@ -135,9 +135,9 @@ export function RelapsePrevention({
               className={`h-auto min-h-[3rem] py-3 px-4 text-sm text-left justify-start whitespace-normal ${
                 !gameActive && feedback.length > 0
                   ? option.correct
-                    ? "bg-green-50 border-green-500"
+                    ? "#daf2ce"
                     : selectedOptions.includes(index)
-                      ? "bg-red-50 border-red-500"
+                      ? "#FF0000"
                       : ""
                   : ""
               }`}
